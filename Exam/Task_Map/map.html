@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+    <style>
+
+        .wrap{
+            width: 90vw;
+            position: relative;
+        }
+
+        #map{
+            width: 100%;
+            height: auto;
+        }
+
+        #hero {
+            position: absolute; 
+            top: 80%; 
+            left: 10%; 
+            width: 10%; 
+            height: auto; 
+            transform: translate(-50%, -50%); 
+        }
+        
+    </style>
+</head>
+
+<script src="jquery-3.6.3.js">
+    var maps = 0;
+    var heros = document.getElementById('hero');
+
+    function move (){
+        maps +-1;
+        heros.style.left = maps+'10px';
+    }
+</script>
+
+<body>
+
+    <div class="wrap">
+            <img src="map.png" id="map">
+            <img src="hero.png" id="hero">
+    </div>
+
+
+    
+</body>
+</html>
