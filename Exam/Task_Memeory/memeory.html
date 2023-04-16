@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Memeory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            grid-gap: 1rem;
+  
+        }
+
+        .heading {
+            text-align: center;
+            font-family: "Poppins", sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 1rem;
+        }
+
+        .card {
+            background-color: darkslategray;
+            padding: 1rem;
+            background-size: cover;
+            background-position: center;
+        
+        }
+
+        .card:hover {
+        transform: scale(1.03);
+        }
+
+        .card img {
+        width: 100%;
+        max-height: 90px;
+        opacity: 0;
+        transition: 0.3s all ease;
+        }
+
+        .card.clicked {
+        background-color: rgb(207, 198, 31);
+        }
+
+        .card.checked {
+        background-color: lightgreen;
+        }
+
+        .card.clicked img,
+        .card.checked img {
+        opacity: 2;
+        }
+
+        .card.shake {
+        background-color: #f15f5f;
+        animation: shake 0.5s;
+        }
+
+
+    </style>
+    
+</head>
+<body>
+    
+        <div class="container">
+            
+            <div class="cards">
+              <div class="card" meme="meme1">
+                <img src="img/meme1.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme2">
+                <img src="img/meme2.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme3">
+                <img src="img/meme3.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme2">
+                <img src="img/meme2.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme4">
+                <img src="img/meme4.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme5">
+                <img src="img/meme5.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme6">
+                <img src="img/meme6.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme1">
+                <img src="img/meme1.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme3">
+                <img src="img/meme3.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme6">
+                <img src="img/meme6.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme5">
+                <img src="img/meme5.jpg" alt="" />
+              </div>
+              <div class="card" meme="meme4">
+                <img src="img/meme4.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+    </div>
+    
+
+    <script src="jquery-3.6.3.js"></script>
+
+    <script>
+        let counter = 0;
+        let firstSelection = "";
+        let secondSelection = "";
+
+        const cards = document.querySelectorAll(".cards .card");
+        cards.forEach((card) => {
+        card.addEventListener("click", () => {
+            card.classList.add("clicked");
+
+            if (counter === 0) {
+            firstSelection = card.getAttribute("meme");
+            counter++;
+            } else {
+            secondSelection = card.getAttribute("meme");
+            counter = 0;
+
+            if (firstSelection === secondSelection) {
+                const correctCards = document.querySelectorAll(
+                ".card[meme='" + firstSelection + "']"
+                );
+
+                correctCards[0].classList.add("checked");
+                correctCards[0].classList.remove("clicked");
+                correctCards[1].classList.add("checked");
+                correctCards[1].classList.remove("clicked");
+            } else {
+                const incorrectCards = document.querySelectorAll(".card.clicked");
+
+                incorrectCards[0].classList.add("shake");
+                incorrectCards[1].classList.add("shake");
+
+                setTimeout(() => {
+                incorrectCards[0].classList.remove("shake");
+                incorrectCards[0].classList.remove("clicked");
+                incorrectCards[1].classList.remove("shake");
+                incorrectCards[1].classList.remove("clicked");
+                }, 800);
+            }
+            }
+        });
+});
+
+
+
+    </script>
+
+</body>
+</html>
